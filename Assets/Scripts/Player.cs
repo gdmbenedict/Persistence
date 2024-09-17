@@ -50,4 +50,9 @@ public class Player : MonoBehaviour
     {
         
     }
+
+    public string GetName()
+    {
+        return name;
+    }
 }
