@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    Player player;
+    [Header("Object Reference")]
+    [SerializeField] Player player;
+    [SerializeField] LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
