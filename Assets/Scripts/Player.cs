@@ -23,21 +23,22 @@ public class Player : MonoBehaviour
     }
 
     //stats
-    private string name;
-    private Class playerClass;
-    private int score;
-    private int exp;
-    private int level;
-    private float health;
-    private int armorClass;
-    private int str;
-    private int dex;
-    private int con;
-    private int itl;
-    private int wis;
-    private int cha;
-    private double time;
-    private bool doneThing;
+    [SerializeField] private string name;
+    [SerializeField] private Class playerClass;
+    [SerializeField] private int score;
+    [SerializeField] private int exp;
+    [SerializeField] private int level;
+    [SerializeField] private float health;
+    [SerializeField] private int armorClass;
+    [SerializeField] private int str;
+    [SerializeField] private int dex;
+    [SerializeField] private int con;
+    [SerializeField] private int itl;
+    [SerializeField] private int wis;
+    [SerializeField] private int cha;
+    [SerializeField] private double time;
+    [SerializeField] private int gold;
+    [SerializeField] private bool doneThing;
 
 
     // Start is called before the first frame update
@@ -186,6 +187,21 @@ public class Player : MonoBehaviour
     public int GetScore() 
     { 
         return score; 
+    }
+
+    public void ModEXP(int modExp)
+    {
+        exp += modExp;
+    }
+
+    public void SetEXP(int exp)
+    {
+        this.exp = exp;
+    }
+
+    public int GetEXP()
+    {
+        return exp;
     }
 
     public void ModLevel(int modLevel)
