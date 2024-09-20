@@ -47,10 +47,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeDisplay;
     [SerializeField] private TextMeshProUGUI goldDisplay;
 
+    [Header("Other")]
+    [SerializeField] private GameObject fileButtons;
+    [SerializeField] private GameObject emptyCheckBox;
+    [SerializeField] private GameObject filledCheckBox;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        filledCheckBox.SetActive(player.GetThingDone());
+        filledCheckBox.SetActive(!player.GetThingDone());
     }
 
     // Update is called once per frame
@@ -68,6 +74,7 @@ public class UIManager : MonoBehaviour
                 charCreate.SetActive(false);
                 gamePlay.SetActive(false);
                 shop.SetActive(false);
+                fileButtons.SetActive(false);
                 break;
 
             case UIScreen.charCreate:
@@ -75,6 +82,7 @@ public class UIManager : MonoBehaviour
                 charCreate.SetActive(true);
                 gamePlay.SetActive(false);
                 shop.SetActive(false);
+                fileButtons.SetActive(true);
                 break;
 
             case UIScreen.gamePlay:
@@ -82,6 +90,7 @@ public class UIManager : MonoBehaviour
                 charCreate.SetActive(false);
                 gamePlay.SetActive(true);
                 shop.SetActive(false);
+                fileButtons.SetActive(true);
                 break;
 
             case UIScreen.shop:
@@ -89,6 +98,7 @@ public class UIManager : MonoBehaviour
                 charCreate.SetActive(false);
                 gamePlay.SetActive(false);
                 shop.SetActive(true);
+                fileButtons.SetActive(true);
                 break;
         }
     }
@@ -120,6 +130,9 @@ public class UIManager : MonoBehaviour
 
         //gold
         goldDisplay.text = player.GetGold().ToString();
+
+        //time
+        timeDisplay.text = "Time: " + player.DisplayTime();
     }
 
     public void IncrementScore(bool incrementType)
@@ -264,5 +277,13 @@ public class UIManager : MonoBehaviour
         {
             player.ModGold(-goldIncrement);
         }
+    }
+
+    public void ToggleCheck()
+    {
+        player.ToggleThingDone();
+
+        filledCheckBox.SetActive(player.GetThingDone());
+        filledCheckBox.SetActive(!player.GetThingDone());
     }
 }

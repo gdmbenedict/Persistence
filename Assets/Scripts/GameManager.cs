@@ -8,8 +8,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Object Reference")]
-    [SerializeField] Player player;
-    [SerializeField] LevelManager levelManager;
+    [SerializeField] private Player player;
+    [SerializeField] private LevelManager levelManager;
+
+    private int gameManCount = 0;
+    private int gameManDestroy = 0;
+
+    public bool keepManager = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,42 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void NewGame()
+    {
+        keepManager = false;
+        levelManager.ChangeLevel(LevelManager.Level.level1);
+    }
+
+    public void SetGameCount(int count)
+    {
+        gameManCount = count;
+    }
+
+    public void ModGameCount(int count)
+    {
+        gameManCount += count;
+    }
+
+    public int GetGameCount()
+    {
+        return gameManCount;
+    }
+
+    public void SetGameDestroy(int destroy)
+    {
+        gameManDestroy = destroy;
+    }
+
+    public void ModGameDestroy(int destroy)
+    {
+        gameManDestroy += destroy;
+    }
+    
+    public int GetGameDestroy()
+    {
+        return gameManDestroy;
     }
 
     /// <summary>

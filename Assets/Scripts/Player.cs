@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int itl;
     [SerializeField] private int wis;
     [SerializeField] private int cha;
-    [SerializeField] private double time;
+    [SerializeField] private double time = 0;
     [SerializeField] private int gold;
     [SerializeField] private bool doneThing;
 
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
     }
 
     public void SetName(string name)
@@ -390,6 +390,11 @@ public class Player : MonoBehaviour
     public void ModGold(int modGold)
     {
         gold += modGold;
+    }
+
+    public void SetGold(int gold)
+    {
+        this.gold = gold;
     }
 
     public int GetGold()
