@@ -222,11 +222,29 @@ public class Player : MonoBehaviour
     public void ModHealth(float modHealth)
     {
         health += modHealth;
+
+        if (health < 0)
+        {
+            health = 0;
+        }
+        else if (health > 100)
+        {
+            health = 100;
+        }
     }
 
     public void SetHealth(float health)
     {
         this.health = health;
+
+        if (health < 0)
+        {
+            health = 0;
+        }
+        else if (health > 100)
+        {
+            health = 100;
+        }
     }
 
     public float GetHealth()
@@ -234,7 +252,7 @@ public class Player : MonoBehaviour
         return health;
     }
 
-    public void MedAC(int modAC)
+    public void ModAC(int modAC)
     {
         armorClass += modAC;
     }
@@ -367,5 +385,15 @@ public class Player : MonoBehaviour
     public bool GetThingDone()
     {
         return doneThing;
+    }
+
+    public void ModGold(int modGold)
+    {
+        gold += modGold;
+    }
+
+    public int GetGold()
+    {
+        return gold;
     }
 }
