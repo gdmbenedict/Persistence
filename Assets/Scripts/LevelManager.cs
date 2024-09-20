@@ -55,6 +55,28 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    public void ButtonLevelChange(string input)
+    {
+        switch (input)
+        {
+            case "MainMenu":
+                ChangeLevel(Level.mainMenu);
+                break;
+
+            case "Level01":
+                ChangeLevel(Level.level1);
+                break;
+
+            case "Level02":
+                ChangeLevel(Level.level2);
+                break;
+
+            case "Level03":
+                ChangeLevel(Level.level3);
+                break;
+        }
+    }
+
     public void ChangeLevel(Level targetLevel)
     {
         switch (targetLevel)

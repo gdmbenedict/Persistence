@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Object Reference")]
     [SerializeField] private Player player;
+    [SerializeField] private GameManager gameManager;
 
     [Header("Modification Values")]
     [SerializeField] private int scoreIncrement = 100;
@@ -47,6 +49,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeDisplay;
     [SerializeField] private TextMeshProUGUI goldDisplay;
 
+    [Header("Fields")]
+    [SerializeField] private TMP_InputField nameInput;
+    [SerializeField] private TMP_Dropdown classInput;
+    [SerializeField] private TextMeshProUGUI classLabel;
+
     [Header("Other")]
     [SerializeField] private GameObject fileButtons;
     [SerializeField] private GameObject emptyCheckBox;
@@ -55,8 +62,11 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        filledCheckBox.SetActive(player.GetThingDone());
+        UpdateNameDisplay();
+        UpdateClassDisplay(player.GetClass());
+
         filledCheckBox.SetActive(!player.GetThingDone());
+        filledCheckBox.SetActive(player.GetThingDone());
     }
 
     // Update is called once per frame
@@ -133,6 +143,139 @@ public class UIManager : MonoBehaviour
 
         //time
         timeDisplay.text = "Time: " + player.DisplayTime();
+
+        gameManagerDisplay.text = "Game Managers Made: " + gameManager.GetGameCount() + "\nGame Managers Destroyed: " + gameManager.GetGameDestroy();
+    }
+
+    public void UpdateNameDisplay()
+    {
+        nameInput.text = player.GetName();
+    }
+
+    public void UpdateClassDisplay(Player.Class playerClass)
+    {
+        switch (playerClass)
+        {
+            case Player.Class.artificer:
+                classInput.value = 0;
+                break;
+
+            case Player.Class.barbarian:
+                classInput.value = 1;
+                break;
+
+            case Player.Class.bard:
+                classInput.value = 22;
+                break;
+
+            case Player.Class.cleric:
+                classInput.value = 3;
+                break;
+
+            case Player.Class.druid:
+                classInput.value = 4;
+                break;
+
+            case Player.Class.fighter:
+                classInput.value = 5;
+                break;
+
+            case Player.Class.monk:
+                classInput.value = 6;
+                break;
+
+            case Player.Class.paladin:
+                classInput.value = 7;
+                break;
+
+            case Player.Class.ranger:
+                classInput.value = 8;
+                break;
+
+            case Player.Class.rogue:
+                classInput.value = 9;
+                break;
+
+            case Player.Class.sorcerer:
+                classInput.value = 10;
+                break;
+
+            case Player.Class.warlock:
+                classInput.value = 11;
+                break;
+
+            case Player.Class.wizard:
+                classInput.value = 12;
+                break;
+        }
+    }
+
+    public void EditCharName(string newName)
+    {
+        player.SetName(newName);
+    }
+
+    public void EditClass()
+    {
+        switch (classInput.value)
+        {
+            case 0:
+                player.SetClass(Player.Class.artificer);
+                break;
+
+            case 1:
+                player.SetClass(Player.Class.barbarian);
+                break;
+
+            case 2:
+                player.SetClass(Player.Class.bard);
+                break;
+
+            case 3:
+                player.SetClass(Player.Class.cleric);
+                break;
+
+            case 4:
+                player.SetClass(Player.Class.druid);
+                break;
+
+            case 5:
+                player.SetClass(Player.Class.fighter);
+                break;
+                
+            case 6:
+                player.SetClass(Player.Class.monk);
+                break;
+
+            case 7:
+                player.SetClass(Player.Class.paladin);
+                break;
+
+            case 8:
+                player.SetClass(Player.Class.ranger);
+                break;
+
+            case 9:
+                player.SetClass(Player.Class.rogue);
+                break;
+
+            case 10:
+                player.SetClass(Player.Class.sorcerer);
+                break;
+
+            case 11:
+                player.SetClass(Player.Class.warlock);
+                break;
+
+            case 12:
+                player.SetClass(Player.Class.wizard);
+                break;
+
+            default:
+                player.SetClass(Player.Class.fighter);
+                break;
+
+        }
     }
 
     public void IncrementScore(bool incrementType)
@@ -283,7 +426,7 @@ public class UIManager : MonoBehaviour
     {
         player.ToggleThingDone();
 
-        filledCheckBox.SetActive(player.GetThingDone());
         filledCheckBox.SetActive(!player.GetThingDone());
+        filledCheckBox.SetActive(player.GetThingDone());
     }
 }

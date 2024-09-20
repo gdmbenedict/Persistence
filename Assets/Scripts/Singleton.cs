@@ -8,7 +8,15 @@ public class Singleton : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        instance.GetComponent<GameManager>().ModGameCount(1);
+        if (instance != null)
+        {
+            instance.GetComponent<GameManager>().ModGameCount(1);
+        }
+        else
+        {
+            gameManager.ModGameCount(1);
+        }
+        
 
         if (instance != null && instance!= this && instance.GetComponent<GameManager>().keepManager)
         {
@@ -20,8 +28,9 @@ public class Singleton : MonoBehaviour
             //transfering debug info
             gameManager.SetGameCount(instance.GetComponent<GameManager>().GetGameCount());
             gameManager.SetGameDestroy(instance.GetComponent<GameManager>().GetGameDestroy());
-            
+
             //destroy previous game manager
+            gameManager.ModGameDestroy(1);
             Destroy(instance);
 
             //set new game manager as instance
