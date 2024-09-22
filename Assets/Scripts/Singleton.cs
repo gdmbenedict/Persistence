@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Singleton : MonoBehaviour
@@ -31,7 +32,7 @@ public class Singleton : MonoBehaviour
 
             //destroy previous game manager
             gameManager.ModGameDestroy(1);
-            Destroy(instance);
+            Destroy(instance.gameObject);
 
             //set new game manager as instance
             DontDestroyOnLoad(gameObject);

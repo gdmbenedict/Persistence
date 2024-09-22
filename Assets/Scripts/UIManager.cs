@@ -62,17 +62,22 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateNameDisplay();
-        UpdateClassDisplay(player.GetClass());
-
-        filledCheckBox.SetActive(!player.GetThingDone());
-        filledCheckBox.SetActive(player.GetThingDone());
+        SetUI();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateTextDisplays();
+    }
+
+    public void SetUI()
+    {
+        UpdateNameDisplay();
+        UpdateClassDisplay(player.GetClass());
+
+        filledCheckBox.SetActive(!player.GetThingDone());
+        filledCheckBox.SetActive(player.GetThingDone());
     }
 
     public void ChangeScreen(UIScreen uIScreen)
@@ -210,9 +215,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void EditCharName(string newName)
+    public void EditCharName()
     {
-        player.SetName(newName);
+        player.SetName(nameInput.text);
     }
 
     public void EditClass()
